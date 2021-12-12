@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import user from "../images/user.png";
+import Modal from "./Modal";
 
 const ContactCard = (props) => {
   const { id, name, email } = props.contact;
@@ -15,11 +16,16 @@ const ContactCard = (props) => {
           <div>{email}</div>
         </Link>
       </div>
-      <i
-        className="trash alternate outline icon"
-        style={{ color: "red", marginTop: "7px", marginLeft: "10px" }}
-        onClick={() => props.clickHandler(id)}
-      ></i>
+      <Modal
+        trigger={
+          <i
+            className="trash alternate outline icon"
+            style={{ color: "red", marginTop: "7px", marginLeft: "10px" }}
+          ></i>
+        }
+        deleteHandler = {props.clickHandler}
+        id = {id}
+      />
       <Link to={{ pathname: `/edit`, state: { contact: props.contact } }}>
         <i
           className="edit alternate outline icon"
